@@ -1,20 +1,8 @@
 import React, { useEffect, useState } from "react";
+import Login from "./Login";
 
 function Navbar() {
-  const[theme,setTheme]=useState(localStorage.getItem("theme")?localStorage.getItem("theme") :"light")
-  const element=document.documentElement
-  useEffect(()=>{
-    if(theme==="dark"){
-      element.classList.add("dark");
-      localStorage.setItem("theme","dark")
-      document.body.classList.add("dark");
-    }
-    else{
-            element.classList.remove("dark");
-      localStorage.setItem("theme","light")
-      document.body.classList.remove("dark");
-    }
-  },[]);
+  // Sticky navbar state
   const [sticky, setSticky] = useState(false);
 
   useEffect(() => {
@@ -23,31 +11,41 @@ function Navbar() {
     };
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
-  }, [theme]);
+  }, []);
 
+  // Navigation links
   const navItems = (
-   <>
-      <li className=" hover:bg-black hover:text-white"><a href="/" >Home</a></li>
-      <li className=" hover:bg-black hover:text-white"><a href="/course">Course</a></li>
-      <li className=" hover:bg-black hover:text-white"><a href="/contact">Contact</a></li>
-      <li className=" hover:bg-black hover:text-white"><a href="/about">About</a></li>
-  </>
+    <>
+      <li className="hover:bg-gray-800 hover:text-white px-2 py-1 rounded">
+        <a href="/">Home</a>
+      </li>
+      <li className="hover:bg-gray-800 hover:text-white px-2 py-1 rounded">
+        <a href="/course">Course</a>
+      </li>
+      <li className="hover:bg-gray-800 hover:text-white px-2 py-1 rounded">
+        <a href="/contact">Contact</a>
+      </li>
+      <li className="hover:bg-gray-800 hover:text-white px-2 py-1 rounded">
+        <a href="/about">About</a>
+      </li>
+    </>
   );
+
   return (
     <>
       <div
-        className={`max-w-screen-2xl container mx-auto md:px-20 px-4 fixed top-0 left-0 right-0 z-50  transition-all duration-300 ease-in-out ${
-          sticky ? "bg-gray-200 shadow-md" : "bg-white"
-        }`}
+        className={`max-w-screen-2xl container mx-auto md:px-20 px-4 fixed top-0 left-0 right-0 z-50 
+        transition-all duration-300 ease-in-out
+        ${sticky ? "bg-gray-200 shadow-md" : "bg-white"}`}
       >
-        {/* Navbar */}
+        {/* Navbar Container */}
         <div className="flex items-center justify-between py-3">
-          {/* Left side (logo + menu) */}
+          {/* Left: Logo + Mobile Menu */}
           <div className="flex items-center space-x-4">
-            {/* Dropdown */}
+            {/* Mobile Dropdown */}
             <div className="dropdown lg:hidden">
               <label tabIndex={0} className="btn btn-ghost text-black">
-                {/* hamburger */}
+                {/* Hamburger */}
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   className="h-6 w-6"
@@ -73,22 +71,21 @@ function Navbar() {
 
             {/* Logo */}
             <a
-              className={`text-2xl font-bold cursor-pointer text-black transform transition-transform duration-300 ${
-                sticky ? "scale-75" : "scale-100"
-              }`}
+              className={`text-2xl font-bold cursor-pointer text-black transform transition-transform duration-300 
+              ${sticky ? "scale-75" : "scale-100"}`}
             >
               Bookstore
             </a>
           </div>
 
-          {/* Right side */}
+          {/* Right: Menu + Search + Login */}
           <div className="flex items-center space-x-4">
             {/* Desktop Menu */}
             <div className="hidden lg:flex">
               <ul className="flex space-x-6 text-black">{navItems}</ul>
             </div>
 
-            {/* Search */}
+            {/* Search Box */}
             <div className="hidden md:block">
               <label className="input flex items-center gap-2 border rounded-lg px-2 py-1 bg-gray-50">
                 <svg
@@ -116,68 +113,17 @@ function Navbar() {
               </label>
             </div>
 
-            {/* Theme toggle + Login */}
-            <label className="toggle text-base-content">
-              <input
-                type="checkbox"
-                value="synthwave"
-                className="theme-controller"
-              />
-              {/* sun */}
-              <svg
-                aria-label="sun"
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 24 24"
-                className="h-5 w-5"
-                onClick={()=>setTheme(theme==="light"?"dark":"light")}
-              >
-                <g
-                  strokeLinejoin="round"
-                  strokeLinecap="round"
-                  strokeWidth="2"
-                  fill="none"
-                  stroke="currentColor"
-                >
-                  <circle cx="12" cy="12" r="4"></circle>
-                  <path d="M12 2v2"></path>
-                  <path d="M12 20v2"></path>
-                  <path d="m4.93 4.93 1.41 1.41"></path>
-                  <path d="m17.66 17.66 1.41 1.41"></path>
-                  <path d="M2 12h2"></path>
-                  <path d="M20 12h2"></path>
-                  <path d="m6.34 17.66-1.41 1.41"></path>
-                  <path d="m19.07 4.93-1.41 1.41"></path>
-                </g>
-              </svg>
-
-              {/* moon */}
-              <svg
-                aria-label="moon"
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 24 24"
-                className="h-5 w-5"
-                onClick={()=>setTheme(theme==="dark"?"light":"dark")}
-              >
-                <g
-                  strokeLinejoin="round"
-                  strokeLinecap="round"
-                  strokeWidth="2"
-                  fill="none"
-                  stroke="currentColor"
-                >
-                  <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path>
-                </g>
-              </svg>
-            </label>
-
-            <a className="btn bg-blue-600 text-white hover:bg-slate-800 duration-300 cursor-pointer">
+            {/* Login Button */}
+            <a className="btn bg-pink-600 text-white hover:bg-slate-800 duration-300 cursor-pointer"
+            onClick={()=> document.getElementById("my_modal").showModal()}>
               Login
             </a>
+            <Login/>
           </div>
         </div>
       </div>
 
-      {/* Auto Spacer for navbar height */}
+      {/* Spacer for Navbar height */}
       <div className="pt-[64px] md:pt-[72px]"></div>
     </>
   );

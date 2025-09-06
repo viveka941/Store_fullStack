@@ -4,7 +4,7 @@ import book from "../../public/book.png"
 function Hero() {
   return (
     <>
-      <div className=" flex flex-col md:flex-row items-center justify-between max-w-screen-xl container md:px-20 px-4">
+      <div className=" flex flex-col md:flex-row items-center justify-between  max-w-screen-xl container md:px-20 px-4">
         
         {/* Left Content */}
         <div className="order-2 w-full md:w-1/2 mt-10 md:mt-32 space-y-8">
