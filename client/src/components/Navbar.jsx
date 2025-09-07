@@ -70,7 +70,7 @@ function Navbar() {
             </div>
 
             {/* Logo */}
-            <a
+            <a href="/"
               className={`text-2xl font-bold cursor-pointer text-black transform transition-transform duration-300 
               ${sticky ? "scale-75" : "scale-100"}`}
             >

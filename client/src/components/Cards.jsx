@@ -4,7 +4,7 @@ function Cards({ item }) {
   return (
     <>
       <div className="px-2 mt-10 "> {/* padding between slides */}
-        <div className="card w-full  bg-base-100 shadow-xl hover:rounded-xl hover:border-2 transition duration-200 hover:scale-105 ">
+        <div className="card w-full h-full  bg-base-100 shadow-xl hover:rounded-xl hover:border-2 transition duration-200 hover:scale-105 ">
           <figure className="h-48 overflow-hidden flex justify-center">
             <img
               src={item.Image}
