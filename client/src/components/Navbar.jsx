@@ -39,7 +39,7 @@ function Navbar() {
         ${sticky ? "bg-gray-200 shadow-md" : "bg-white"}`}
       >
         {/* Navbar Container */}
-        <div className="flex items-center justify-between py-3">
+        <div className="flex  w-full items-center justify-between py-3">
           {/* Left: Logo + Mobile Menu */}
           <div className="flex items-center space-x-4">
             {/* Mobile Dropdown */}
